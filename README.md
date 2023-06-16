@@ -33,6 +33,14 @@ Create an HTML with all the gauge graphics you want but they need this structure
 
 Please see example
 
+## Install
+
+`yarn`
+
 ## Build
 
-You can download this code, and run `yarn build` to have the minified JS with the gauge library and this opinionated implementation if you want an easy way to add this in your project
+You can download this code, and run `yarn build` to have the minified JS with the gauge library and this opinionated implementation if you want an easy way to add this to your project
+
+## Run
+
+If you want to see this live, download the repo and run `yarn develop`
