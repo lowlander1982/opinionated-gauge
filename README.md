@@ -7,10 +7,10 @@ This is a basic example of an implementation of the library gauge.js
 Create an HTML with all the gauge graphics you want but they need this structure:
 
 ```
-    <div data-gauge-id="gauge-container" data-digits="0">
-      <div data-gauge-id="container"></div>
+    <div class="gauge-container digits-0">
+      <div class="container"></div>
       <div
-        data-gauge-id="visibleValue"
+        class="visible-value"
         style="
           display: block;
           font-size: 30px;
@@ -19,12 +19,12 @@ Create an HTML with all the gauge graphics you want but they need this structure
         "
       ></div>
       <div data-refresher="always" style="display: none">
-        <div data-gauge-id="value">{THE TEST VALUE}</div>
-        <div data-gauge-id="ranges">
-          <span data-color="{HEX_COLOR}">{MIN RANGE}</span>
-          <span data-color="{HEX_COLOR}">{ANOTHER RANGE}</span>
+        <div class="value">{THE TEST VALUE}</div>
+        <div class="ranges">
+          <span class="color-{HEX_COLOR}">{MIN RANGE}</span>
+          <span class="color-{HEX_COLOR}">{ANOTHER RANGE}</span>
           ...
-          <span data-color="{HEX_COLOR}">{ANOTHER RANGE}</span>
+          <span class="color-{HEX_COLOR}">{ANOTHER RANGE}</span>
           <span>{MAX RANGE}</span>
         </div>
       </div>

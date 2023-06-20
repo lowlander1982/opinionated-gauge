@@ -12,12 +12,8 @@
   function refresh() {
     const that = this;
     setTimeout(function () {
-      const elementValue = that.container.querySelector(
-        '[data-gauge-id="value"]'
-      );
-      const visibleValue = that.container.querySelector(
-        '[data-gauge-id="visibleValue"]'
-      );
+      const elementValue = that.container.querySelector(".value");
+      const visibleValue = that.container.querySelector(".visible-value");
       visibleValue.innerText = processNumber(elementValue.innerText);
       visibleValue.style.width = that.target.clientWidth + "px";
       const val = processNumber(elementValue.innerText, that.digits);
@@ -82,10 +78,16 @@
     const that = this;
     setTimeout(function () {
       const values = Array.from(
-        that.container.querySelectorAll('[data-gauge-id="ranges"] > span')
+        that.container.querySelectorAll(".ranges > span")
       ).map(function (container) {
+        const colorName = Array.from(container.classList).filter(function (
+          className
+        ) {
+          return className.startsWith("color-");
+        })[0];
+
         return {
-          color: container.dataset.color,
+          color: colorName ? colorName.replace("color-", "") : undefined,
           value: processNumber(container.innerText, that.digits),
         };
       });
@@ -102,10 +104,10 @@
     }, 0);
   }
 
-  Array.from(
-    document.querySelectorAll('[data-gauge-id="gauge-container"]')
-  ).forEach(function (container) {
-    const divContainer = container.querySelector('[data-gauge-id="container"]');
+  Array.from(document.querySelectorAll(".gauge-container")).forEach(function (
+    container
+  ) {
+    const divContainer = container.querySelector(".container");
     const target = document.createElement("canvas");
     target.id = "gauge-canvas" + Date.now();
     divContainer.appendChild(target);
@@ -115,11 +117,17 @@
       container: container,
       target: target,
       gauge: gauge,
-      digits: container.dataset.digits,
+      digits: Number(
+        Array.from(container.classList)
+          .filter(function (className) {
+            return className.startsWith("digits-");
+          })[0]
+          .replace("digits-", "")
+      ),
     };
 
     container
-      .querySelector('[data-refresher="always"]')
+      .querySelector(".refresher-always")
       .addEventListener("DOMSubtreeModified", initRanges.bind(context));
     initRanges.bind(context)();
   });
