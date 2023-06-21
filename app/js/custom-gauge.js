@@ -5,6 +5,7 @@
 
   function initGauge(values) {
     const elementValue = this.container.querySelector(".value");
+    const visibleValue = this.container.querySelector(".visible-value");
     const val = processNumber(elementValue.innerText);
 
     if (isNaN(val)) {
@@ -12,9 +13,11 @@
       const canvasX = this.target.width / 2;
       const canvasY = this.target.height / 2;
       const errorMessage = this.container.querySelector(".error-message");
+      visibleValue.innerText = "";
 
       ctx.font = "30px Arial, Helvetica, sans-serif";
       ctx.textAlign = "center";
+      ctx.clearRect(0, 0, this.target.width, this.target.height);
       ctx.fillText(errorMessage.innerText, canvasX, canvasY);
 
       return;
@@ -65,7 +68,6 @@
     this.gauge.animationSpeed = 12;
     this.gauge.set(val);
 
-    const visibleValue = this.container.querySelector(".visible-value");
     visibleValue.innerText = processNumber(elementValue.innerText);
     visibleValue.style.width = this.target.clientWidth + "px";
   }
