@@ -1,11 +1,5 @@
 (function () {
-  function processNumber(value, digits) {
-    if (digits) {
-      return Number(
-        parseFloat(value.trim().replaceAll(",", ".")).toFixed(digits)
-      );
-    }
-
+  function processNumber(value) {
     return Number(value.trim().replaceAll(",", "."));
   }
 
@@ -16,7 +10,7 @@
       const visibleValue = that.container.querySelector(".visible-value");
       visibleValue.innerText = processNumber(elementValue.innerText);
       visibleValue.style.width = that.target.clientWidth + "px";
-      const val = processNumber(elementValue.innerText, that.digits);
+      const val = processNumber(elementValue.innerText);
 
       if (isNaN(val)) {
         that.gauge.set(0);
@@ -54,7 +48,7 @@
           return value.value;
         }),
         color: "#000000",
-        fractionDigits: parseInt(this.digits),
+        fractionDigits: parseInt(this.digits || "0"),
       },
       limitMax: "false",
       percentColors: [
@@ -89,7 +83,7 @@
 
         return {
           color: colorName ? colorName.replace("color-", "") : undefined,
-          value: processNumber(container.innerText, that.digits),
+          value: processNumber(container.innerText),
         };
       });
 
