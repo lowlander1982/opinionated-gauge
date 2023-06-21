@@ -1,5 +1,6 @@
 <html>
   <body>
+    <script src="/js/gauge.js"></script>
     <div class="gauge-container digits-2">
       <div class="container"></div>
       <div
@@ -12,7 +13,7 @@
         "
       ></div>
       <div class="refresher-always" style="display: none">
-        <div class="value">35.123</div>
+        <div class="value">35.12</div>
         <div class="ranges">
           <span class="color-#e81416">
             <span>
@@ -26,8 +27,51 @@
         </div>
       </div>
     </div>
-
-    <script src="/js/gauge.js"></script>
+    <script src="/js/custom-gauge.js"></script>
+    <div class="gauge-container digits-0">
+      <div class="container"></div>
+      <div
+        class="visible-value"
+        style="
+          display: block;
+          font-size: 30px;
+          text-align: center;
+          margin-top: -15px;
+        "
+      ></div>
+      <div class="refresher-always" style="display: none">
+        <div class="value">66</div>
+        <div class="ranges">
+          <span class="color-#e81416">
+            <span>
+              <span> 0 </span>
+            </span>
+          </span>
+          <span class="color-#ffa500">20</span>
+          <span class="color-#faeb36">100</span>
+        </div>
+      </div>
+    </div>
+    <script src="/js/custom-gauge.js"></script>
+    <div class="gauge-container digits-1">
+      <div class="container"></div>
+      <div
+        class="visible-value"
+        style="
+          display: block;
+          font-size: 30px;
+          text-align: center;
+          margin-top: -15px;
+        "
+      ></div>
+      <div class="refresher-always" style="display: none">
+        <div class="value">30</div>
+        <div class="ranges">
+          <span class="color-#ffa500">20</span>
+          <span class="color-#faeb36">40</span>
+        </div>
+      </div>
+    </div>
     <script src="/js/custom-gauge.js"></script>
   </body>
 </html>

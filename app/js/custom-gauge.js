@@ -66,6 +66,7 @@
       generateGradient: true,
     };
 
+    this.gauge = new Gauge(this.target);
     this.gauge.setOptions(opts);
     this.gauge.minValue = values[0].value;
     this.gauge.maxValue = values[values.length - 1].value;
@@ -104,19 +105,19 @@
     }, 0);
   }
 
-  Array.from(document.querySelectorAll(".gauge-container")).forEach(function (
-    container
-  ) {
+  Array.from(
+    document.querySelectorAll(
+      ".gauge-container:not(.gauge-container-initialized)"
+    )
+  ).forEach(function (container) {
     const divContainer = container.querySelector(".container");
     const target = document.createElement("canvas");
     target.id = "gauge-canvas" + Date.now();
     divContainer.appendChild(target);
-    const gauge = new Gauge(target);
 
     const context = {
       container: container,
       target: target,
-      gauge: gauge,
       digits: Number(
         Array.from(container.classList)
           .filter(function (className) {
@@ -129,6 +130,7 @@
     container
       .querySelector(".refresher-always")
       .addEventListener("DOMSubtreeModified", initRanges.bind(context));
+    container.classList.add("gauge-container-initialized");
     initRanges.bind(context)();
   });
 })();
