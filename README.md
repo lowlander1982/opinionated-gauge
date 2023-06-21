@@ -19,6 +19,7 @@ Create an HTML with all the gauge graphics you want but they need this structure
         "
       ></div>
       <div class="refresher-always" style="display: none">
+        <div class="error-message">{ERROR MESSAGE}</div>
         <div class="value">{THE TEST VALUE}</div>
         <div class="ranges">
           <span class="color-{HEX_COLOR}">{MIN RANGE}</span>

@@ -1,27 +1,25 @@
 (function () {
   function processNumber(value) {
-    return Number(value.trim().replaceAll(",", "."));
-  }
-
-  function refresh() {
-    const that = this;
-    setTimeout(function () {
-      const elementValue = that.container.querySelector(".value");
-      const visibleValue = that.container.querySelector(".visible-value");
-      visibleValue.innerText = processNumber(elementValue.innerText);
-      visibleValue.style.width = that.target.clientWidth + "px";
-      const val = processNumber(elementValue.innerText);
-
-      if (isNaN(val)) {
-        that.gauge.set(0);
-        return;
-      }
-
-      that.gauge.set(val);
-    }, 0);
+    return parseFloat(value.trim().replaceAll(",", "."));
   }
 
   function initGauge(values) {
+    const elementValue = this.container.querySelector(".value");
+    const val = processNumber(elementValue.innerText);
+
+    if (isNaN(val)) {
+      const ctx = this.target.getContext("2d");
+      const canvasX = this.target.width / 2;
+      const canvasY = this.target.height / 2;
+      const errorMessage = this.container.querySelector(".error-message");
+
+      ctx.font = "30px Arial, Helvetica, sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText(errorMessage.innerText, canvasX, canvasY);
+
+      return;
+    }
+
     const opts = {
       lines: 12,
       angle: 0.054,
@@ -65,8 +63,11 @@
     this.gauge.minValue = values[0].value;
     this.gauge.maxValue = values[values.length - 1].value;
     this.gauge.animationSpeed = 12;
+    this.gauge.set(val);
 
-    refresh.bind(this)();
+    const visibleValue = this.container.querySelector(".visible-value");
+    visibleValue.innerText = processNumber(elementValue.innerText);
+    visibleValue.style.width = this.target.clientWidth + "px";
   }
 
   function initRanges() {
