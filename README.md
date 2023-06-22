@@ -45,3 +45,7 @@ You can download this code, and run `yarn build` to have the minified JS with th
 ## Run
 
 If you want to see this live, download the repo and run `yarn develop`
+
+## Considerations
+
+The minified version of the javascript was added to the repo for easy install, but pipelines are TBD
